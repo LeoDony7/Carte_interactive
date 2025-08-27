@@ -148,6 +148,27 @@ body {
   padding: var(--spacing-xl) 0;
 }
 
+/* Boutons dans la sidebar */
+.sidebar-btn {
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    letter-spacing: 0.5px;
+}
+
+.sidebar-btn:hover {
+    background-color: #45a049;
+}
+
+
 /* ========================================
    EN-TÊTE (HEADER)
    ======================================== */

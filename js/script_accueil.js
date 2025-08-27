@@ -56,6 +56,18 @@ document.addEventListener('DOMContentLoaded', function() {
             closeSidebar();
         }
     });
+
+    // Fonction de redirection (identique à ton bouton principal)
+    const sidebarCreateMapBtn = document.getElementById('sidebarCreateMap');
+
+    if (sidebarCreateMapBtn) {
+        sidebarCreateMapBtn.addEventListener('click', () => {
+            // Fermer la sidebar avant de rediriger
+            closeSidebar();
+            // Redirection vers la page de création de carte
+            window.location.href = 'create-map.html';
+        });
+    }
     
     // ========================================
     // GESTION DES BOUTONS D'ACTION
