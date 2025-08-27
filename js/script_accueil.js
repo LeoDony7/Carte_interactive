@@ -69,9 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
      * À terme, cette fonction redirigera vers la page de création
      */
     function createNewMap() {
-        // Pour l'instant, on simule avec une alerte
-        // Dans la version finale, on ferait : window.location.href = 'create-map.html';
-        
         console.log('Création d\'une nouvelle carte...');
         
         // Animation du bouton pour donner un feedback visuel
@@ -79,12 +76,9 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             createMapBtn.style.transform = '';
         }, 150);
-        
-        // Simulation - À remplacer par la vraie navigation
-        alert('Redirection vers la page de création de carte...\n(Cette fonctionnalité sera implémentée dans les prochaines pages)');
-        
-        // Dans la version finale, décommenter cette ligne :
-        // window.location.href = 'create-map.html';
+                
+        // Redirection vers la page de la création de carte
+        window.location.href = 'create-map.html';
     }
     
     /**
