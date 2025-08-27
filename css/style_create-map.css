@@ -11,7 +11,7 @@ html, body {
 
 /* Décaler les boutons de zoom Leaflet un peu vers le bas */
 .leaflet-control-zoom {
-    top: 50px !important; /* valeur ajustable selon besoin */
+    top: 40px !important; /* valeur ajustable selon besoin */
 }
 
 /* Conteneur de la carte */
@@ -28,17 +28,33 @@ html, body {
     top: 10px;
     left: 10px;
     z-index: 1000;
-    padding: 8px 12px;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 6px 12px;
+    background-color: #ffffffdd; /* légèrement transparent */
+    border: 1px solid #888;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
 }
 
 /* Légère ombre pour bouton */
 #btnReturn:hover {
+    background-color: #f0f0f0;
+    border-color: #555;
     box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
 
+/* Chevron CSS : utilisé pour le bouton retour à la page d'acceuil */
+.chevron {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-left: 2px solid #333;
+    border-bottom: 2px solid #333;
+    transform: rotate(45deg);
+    margin-right: 6px;
+}
 
