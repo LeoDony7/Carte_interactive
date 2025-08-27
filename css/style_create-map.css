@@ -1,0 +1,44 @@
+/* Style de l'interface de modification d'une carte*/
+
+
+/** Fond de carte Leaflet **/
+
+/* La carte doit remplir toute la fenêtre */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Décaler les boutons de zoom Leaflet un peu vers le bas */
+.leaflet-control-zoom {
+    top: 50px !important; /* valeur ajustable selon besoin */
+}
+
+/* Conteneur de la carte */
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+/** Boutons de naviguation **/
+
+/* Bouton retour à l'accueil */
+#btnReturn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    padding: 8px 12px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Légère ombre pour bouton */
+#btnReturn:hover {
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+
