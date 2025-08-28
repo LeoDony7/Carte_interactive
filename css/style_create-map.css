@@ -65,7 +65,7 @@ html, body {
     position: fixed;           /* Fixe par rapport à la fenêtre */
     top: 20px;                /* Marge du haut */
     right: 20px;              /* Marge de droite */
-    width: 320px;             /* Largeur du panneau */
+    width: 360px;             /* Largeur du panneau */
     background-color: #ffffff; /* Fond blanc */
     border-radius: 15px;      /* Coins arrondis sur tout le panneau */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Ombre portée élégante */
@@ -77,34 +77,88 @@ html, body {
 
 /* État fermé du panneau (hauteur réduite) */
 .dropdown-panel.closed {
-    height: 60px;             /* Hauteur minimale montrant juste l'en-tête */
+    height: auto;             /* Hauteur automatique basée sur l'en-tête */
 }
+
+.dropdown-panel.closed .panel-body {
+    max-height: 0;            /* Corps complètement réduit */
+    overflow: hidden;         /* Cache le contenu qui dépasse */
+    opacity: 0;               /* Invisible */
+    padding-top: 0;           /* Supprime le padding du haut */
+    padding-bottom: 0;        /* Supprime le padding du bas */
+    transition: max-height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                opacity 0.3s ease,
+                padding 0.4s ease;
+}
+
 
 /* État ouvert du panneau (hauteur complète) */
 .dropdown-panel.open {
-    height: calc(100vh - 80px); /* Presque toute la hauteur de l'écran */
-    max-height: 600px;        /* Hauteur maximale pour éviter que ce soit trop grand */
+    height: auto;             /* Hauteur automatique */
+    max-height: calc(100vh - 80px); /* Limite la hauteur totale */
 }
+
+.dropdown-panel.open .panel-body {
+    max-height: 550px;        /* Hauteur max d'affichage du panneau de contrôle*/
+    overflow-y: auto;         /* Déjà présent - active la barre de défilement */
+    overflow-x: hidden;       /* Empêche le défilement horizontal */
+    opacity: 1;
+    padding: 20px;
+    padding-right: 15px;      /* Réduit le padding à droite pour la barre */
+    transition: max-height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                opacity 0.3s ease 0.1s,
+                padding 0.4s ease;
+}
+
+/* Style personnalisé de la barre de défilement */
+.panel-body::-webkit-scrollbar {
+    width: 8px;               /* Largeur de la barre */
+}
+
+.panel-body::-webkit-scrollbar-track {
+    background: #f1f1f1;      /* Couleur du fond de la barre */
+    border-radius: 4px;       /* Coins arrondis */
+}
+
+.panel-body::-webkit-scrollbar-thumb {
+    background: #c1c1c1;      /* Couleur de la poignée */
+    border-radius: 4px;       /* Coins arrondis */
+    transition: background 0.2s ease;
+}
+
+.panel-body::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;      /* Couleur au survol */
+}
+
 
 /* En-tête du panneau (toujours visible) */
 .panel-header {
-    display: flex;            /* Flexbox pour aligner titre et bouton */
-    justify-content: space-between; /* Espacement entre titre et bouton */
-    align-items: center;      /* Alignement vertical centré */
-    padding: 15px 20px;       /* Espacement intérieur */
-    background-color: #f8f9fa; /* Fond légèrement gris */
-    border-bottom: 1px solid #e0e0e0; /* Séparateur subtil */
-    height: 30px;             /* Hauteur fixe de l'en-tête */
-    box-sizing: border-box;   /* Inclut padding dans la hauteur */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 20px;       
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+    height: 44px;           
+    box-sizing: border-box;
 }
 
 /* Titre dans l'en-tête */
 .panel-header h3 {
-    margin: 0;                /* Supprime les marges par défaut */
-    font-size: 16px;          /* Taille de police */
-    font-weight: 600;         /* Poids semi-gras */
-    color: #333;              /* Couleur du texte */
-    user-select: none;        /* Empêche la sélection du texte */
+    margin: 0;
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;  /* Police moderne */
+    font-size: 18px;             /* Légèrement plus grand */
+    font-weight: 500;            /* Moins gras, plus élégant */
+    color: #2c3e50;              /* Couleur plus moderne (bleu-gris foncé) */
+    letter-spacing: 0.3px;       /* Espacement entre les lettres */
+    text-transform: none;        /* Garde la casse normale */
+    user-select: none;
+    transition: color 0.2s ease; /* Animation douce sur la couleur */
+}
+
+/* Effet subtil au survol de l'en-tête */
+.panel-header:hover h3 {
+    color: #34495e;              /* Couleur légèrement plus foncée au survol */
 }
 
 /* Bouton toggle dans l'en-tête */
@@ -151,10 +205,13 @@ html, body {
 
 /* Corps du panneau (contenu déroulant) */
 .panel-body {
-    padding: 20px;            /* Espacement intérieur */
-    overflow-y: auto;         /* Défilement vertical si nécessaire */
-    height: calc(100% - 60px); /* Hauteur moins l'en-tête */
+    padding: 0;               /* Padding initial à 0 */
+    overflow: hidden;         /* Hidden par défaut */
+    transition: max-height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                opacity 0.3s ease,
+                padding 0.4s ease;
 }
+
 
 /* Styles pour le contenu du panneau */
 .panel-body p {
@@ -169,14 +226,3 @@ html, body {
     margin-bottom: 0;
 }
 
-/* Animation d'apparition du contenu */
-.dropdown-panel.closed .panel-body {
-    opacity: 0;               /* Invisible quand fermé */
-    pointer-events: none;     /* Désactive les interactions */
-}
-
-.dropdown-panel.open .panel-body {
-    opacity: 1;               /* Visible quand ouvert */
-    pointer-events: auto;     /* Active les interactions */
-    transition: opacity 0.3s ease 0.1s; /* Délai pour l'apparition */
-}
