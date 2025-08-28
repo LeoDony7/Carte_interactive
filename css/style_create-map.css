@@ -58,3 +58,125 @@ html, body {
     margin-right: 6px;
 }
 
+/** Panneau déroulant vertical **/
+
+/* Conteneur principal du panneau */
+.dropdown-panel {
+    position: fixed;           /* Fixe par rapport à la fenêtre */
+    top: 20px;                /* Marge du haut */
+    right: 20px;              /* Marge de droite */
+    width: 320px;             /* Largeur du panneau */
+    background-color: #ffffff; /* Fond blanc */
+    border-radius: 15px;      /* Coins arrondis sur tout le panneau */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Ombre portée élégante */
+    z-index: 1001;            /* Au-dessus de la carte */
+    overflow: hidden;         /* Cache le contenu qui dépasse pendant l'animation */
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Animation fluide */
+    border: 1px solid #e0e0e0; /* Bordure légère */
+}
+
+/* État fermé du panneau (hauteur réduite) */
+.dropdown-panel.closed {
+    height: 60px;             /* Hauteur minimale montrant juste l'en-tête */
+}
+
+/* État ouvert du panneau (hauteur complète) */
+.dropdown-panel.open {
+    height: calc(100vh - 80px); /* Presque toute la hauteur de l'écran */
+    max-height: 600px;        /* Hauteur maximale pour éviter que ce soit trop grand */
+}
+
+/* En-tête du panneau (toujours visible) */
+.panel-header {
+    display: flex;            /* Flexbox pour aligner titre et bouton */
+    justify-content: space-between; /* Espacement entre titre et bouton */
+    align-items: center;      /* Alignement vertical centré */
+    padding: 15px 20px;       /* Espacement intérieur */
+    background-color: #f8f9fa; /* Fond légèrement gris */
+    border-bottom: 1px solid #e0e0e0; /* Séparateur subtil */
+    height: 30px;             /* Hauteur fixe de l'en-tête */
+    box-sizing: border-box;   /* Inclut padding dans la hauteur */
+}
+
+/* Titre dans l'en-tête */
+.panel-header h3 {
+    margin: 0;                /* Supprime les marges par défaut */
+    font-size: 16px;          /* Taille de police */
+    font-weight: 600;         /* Poids semi-gras */
+    color: #333;              /* Couleur du texte */
+    user-select: none;        /* Empêche la sélection du texte */
+}
+
+/* Bouton toggle dans l'en-tête */
+.toggle-button {
+    background-color: transparent; /* Fond transparent */
+    border: none;             /* Pas de bordure */
+    cursor: pointer;          /* Curseur pointer */
+    padding: 8px;             /* Espacement intérieur */
+    border-radius: 8px;       /* Coins légèrement arrondis */
+    display: flex;            /* Flexbox pour centrer la flèche */
+    align-items: center;      /* Centrage vertical */
+    justify-content: center;  /* Centrage horizontal */
+    transition: all 0.2s ease; /* Animation rapide */
+    width: 32px;              /* Largeur fixe */
+    height: 32px;             /* Hauteur fixe */
+}
+
+/* Effet hover sur le bouton */
+.toggle-button:hover {
+    background-color: #e9ecef; /* Fond gris clair au survol */
+}
+
+/* Effet de clic sur le bouton */
+.toggle-button:active {
+    background-color: #dee2e6; /* Fond plus foncé à l'appui */
+    transform: scale(0.95);   /* Légère réduction */
+}
+
+/* Icône flèche dans le bouton */
+.dropdown-arrow {
+    display: inline-block;
+    width: 0;                 /* Largeur nulle pour créer un triangle */
+    height: 0;                /* Hauteur nulle pour créer un triangle */
+    border-left: 5px solid transparent;   /* Côté gauche transparent */
+    border-right: 5px solid transparent;  /* Côté droit transparent */
+    border-top: 6px solid #666;          /* Flèche vers le bas */
+    transition: transform 0.3s ease;     /* Animation de rotation */
+}
+
+/* Rotation de la flèche quand le panneau est ouvert */
+.dropdown-panel.open .dropdown-arrow {
+    transform: rotate(180deg); /* Flèche vers le haut quand ouvert */
+}
+
+/* Corps du panneau (contenu déroulant) */
+.panel-body {
+    padding: 20px;            /* Espacement intérieur */
+    overflow-y: auto;         /* Défilement vertical si nécessaire */
+    height: calc(100% - 60px); /* Hauteur moins l'en-tête */
+}
+
+/* Styles pour le contenu du panneau */
+.panel-body p {
+    margin: 0 0 15px 0;       /* Marge entre les paragraphes */
+    color: #555;              /* Couleur du texte */
+    line-height: 1.6;         /* Hauteur de ligne pour la lisibilité */
+    font-size: 14px;          /* Taille de police */
+}
+
+/* Dernière élément sans marge du bas */
+.panel-body p:last-child {
+    margin-bottom: 0;
+}
+
+/* Animation d'apparition du contenu */
+.dropdown-panel.closed .panel-body {
+    opacity: 0;               /* Invisible quand fermé */
+    pointer-events: none;     /* Désactive les interactions */
+}
+
+.dropdown-panel.open .panel-body {
+    opacity: 1;               /* Visible quand ouvert */
+    pointer-events: auto;     /* Active les interactions */
+    transition: opacity 0.3s ease 0.1s; /* Délai pour l'apparition */
+}
