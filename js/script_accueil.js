@@ -57,7 +57,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Fonction de redirection (identique à ton bouton principal)
+    // Fonction ramenant à la page d'accueil
+    const sidebarRetourAccueilBtn = document.getElementById('sidebarRetourAccueil');
+
+    if (sidebarRetourAccueilBtn) {
+        sidebarRetourAccueilBtn.addEventListener('click', () => {
+            // Fermer la sidebar avant de rediriger
+            closeSidebar();
+            // Redirection vers la page d'accueil
+            window.location.href = 'index.html';
+        });
+    }
+
+    // Fonction de redirection (identique au bouton principal)
     const sidebarCreateMapBtn = document.getElementById('sidebarCreateMap');
 
     if (sidebarCreateMapBtn) {
@@ -68,6 +80,18 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = 'create-map.html';
         });
     }
+
+    // Fonction amenant à la liste des cartes (identique au bouton principal)
+    const sidebarListMapBtn = document.getElementById('sidebarOpenListMap');
+
+    if (sidebarListMapBtn) {
+        sidebarListMapBtn.addEventListener('click', () => {
+            // Fermer la sidebar avant de rediriger
+            closeSidebar();
+            // Redirection vers la page avec la liste des cartes
+            window.location.href = 'liste-map.html';
+        });
+    }
     
     // ========================================
     // GESTION DES BOUTONS D'ACTION
@@ -76,10 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const createMapBtn = document.getElementById('createMapBtn');
     const openMapsBtn = document.getElementById('openMapsBtn');
     
-    /**
-     * Fonction pour créer une nouvelle carte
-     * À terme, cette fonction redirigera vers la page de création
-     */
+    /* Fonction pour créer une nouvelle carte */
     function createNewMap() {
         console.log('Création d\'une nouvelle carte...');
         
@@ -93,10 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = 'create-map.html';
     }
     
-    /**
-     * Fonction pour ouvrir la liste des cartes existantes
-     * À terme, cette fonction redirigera vers la page de liste des cartes
-     */
+    /*Fonction pour ouvrir la liste des cartes existantes */
     function openMapsList() {
         console.log('Ouverture de la liste des cartes...');
         
@@ -106,11 +124,8 @@ document.addEventListener('DOMContentLoaded', function() {
             openMapsBtn.style.transform = '';
         }, 150);
         
-        // Simulation - À remplacer par la vraie navigation
-        alert('Redirection vers la liste des cartes...\n(Cette fonctionnalité sera implémentée dans les prochaines pages)');
-        
-        // Dans la version finale, décommenter cette ligne :
-        // window.location.href = 'maps-list.html';
+        // Redirection vers la page avec la liste des cartes
+        window.location.href = 'liste-map.html';
     }
     
     // Événements pour les boutons d'action
